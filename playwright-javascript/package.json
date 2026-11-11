@@ -1,0 +1,27 @@
+{
+  "name": "playwright-javascript-portfolio",
+  "version": "1.0.0",
+  "description": "Playwright JavaScript Test Automation Framework for Techdome QA Portfolio",
+  "main": "playwright.config.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test tests/login.spec.js",
+    "test:api": "npx playwright test tests/api.spec.js",
+    "test:headed": "npx playwright test --headed",
+    "report": "npx playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "qa",
+    "javascript",
+    "testng",
+    "portfolio"
+  ],
+  "author": "QA Automation Engineer",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}
+

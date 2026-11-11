@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+target/
+dist/
+build/
+
+# Test reports and artifacts
+test-output/
+playwright-report/
+playwright/.cache/
+test-results/
+.playwright/
+surefire-reports/
+
+# Failure screenshot outputs (keep application showcase images)
+screenshots/FAIL_*.png
+!screenshots/login-page.png
+!screenshots/dashboard-page.png
+!screenshots/.gitkeep
+
+# IDE and Editor files
+.idea/
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log

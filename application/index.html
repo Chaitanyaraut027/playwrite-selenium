@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techdome QA Portal - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header / Brand -->
+    <header class="app-header">
+      <div class="brand-logo">
+        <span class="logo-icon">&#10004;</span>
+        <span class="brand-title">Techdome QA Automation Portal</span>
+      </div>
+      <span class="env-badge" id="env-badge">v1.0.0 &bull; Local AUT</span>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Login Card -->
+      <section id="login-section" class="card login-card" data-testid="login-card">
+        <div class="card-header">
+          <h2 id="login-title">Sign In</h2>
+          <p class="subtitle">Enter your credentials to access the automation dashboard</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div id="error-message" class="alert alert-error" role="alert" data-testid="error-message" style="display: none;"></div>
+        <div id="success-message" class="alert alert-success" role="status" data-testid="success-message" style="display: none;"></div>
+
+        <!-- Login Form -->
+        <form id="login-form" novalidate autocomplete="off">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                data-testid="username-input"
+                aria-required="true"
+              />
+            </div>
+            <span id="username-error" class="field-error" style="display: none;"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                data-testid="password-input"
+                aria-required="true"
+              />
+            </div>
+            <span id="password-error" class="field-error" style="display: none;"></span>
+          </div>
+
+          <button type="submit" id="login-btn" class="btn btn-primary" data-testid="login-button">
+            Sign In
+          </button>
+        </form>
+
+        <div class="demo-credentials" id="demo-credentials">
+          <p><strong>Demo Credentials:</strong></p>
+          <p>Username: <code>admin</code> | Password: <code>admin123</code></p>
+        </div>
+      </section>
+
+      <!-- Dashboard View (Hidden by default) -->
+      <section id="dashboard" class="card dashboard-card" data-testid="dashboard-card" style="display: none;">
+        <div class="dashboard-header">
+          <div>
+            <h2 id="dashboard-title" data-testid="dashboard-title">Automation Dashboard</h2>
+            <p id="welcome-user" class="welcome-text" data-testid="welcome-user">Welcome, <strong id="display-username">admin</strong>!</p>
+          </div>
+          <button id="logout-btn" class="btn btn-secondary" data-testid="logout-button">
+            Logout
+          </button>
+        </div>
+
+        <div class="dashboard-stats">
+          <div class="stat-card">
+            <div class="stat-number" id="stat-tests">16</div>
+            <div class="stat-label">Automated Tests</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-frameworks">2</div>
+            <div class="stat-label">Frameworks (Java + JS)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-coverage">100%</div>
+            <div class="stat-label">Scenario Coverage</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-status">PASSING</div>
+            <div class="stat-label">Health Status</div>
+          </div>
+        </div>
+
+        <div class="dashboard-content">
+          <h3>Test Suite Execution Status</h3>
+          <ul class="suite-list">
+            <li><span class="badge badge-success">&#10003;</span> Selenium Java (TestNG + POM + Selenium Manager)</li>
+            <li><span class="badge badge-success">&#10003;</span> Playwright JavaScript (Chromium + HTML Reports)</li>
+            <li><span class="badge badge-success">&#10003;</span> REST API Testing (Playwright APIRequestContext)</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Techdome QA Automation Portfolio &bull; Built with HTML, CSS, JavaScript</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,74 @@
+name: QA Automation Test Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  selenium-java:
+    name: Selenium Java (TestNG)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: Set up Google Chrome
+        uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
+
+      - name: Run Selenium Tests (Headless)
+        working-directory: selenium-java
+        run: mvn clean test -Dheadless=true
+
+      - name: Upload Surefire Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-surefire-report
+          path: selenium-java/target/surefire-reports/
+          retention-days: 7
+
+  playwright-javascript:
+    name: Playwright JavaScript (Chromium + API)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: playwright-javascript/package-lock.json
+
+      - name: Install Dependencies
+        working-directory: playwright-javascript
+        run: npm ci
+
+      - name: Install Playwright Chromium & OS Dependencies
+        working-directory: playwright-javascript
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright Tests (UI + API)
+        working-directory: playwright-javascript
+        run: npx playwright test
+
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: playwright-javascript/playwright-report/
+          retention-days: 7
